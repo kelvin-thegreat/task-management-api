@@ -426,15 +426,9 @@ Postman is a popular tool for testing REST APIs. Here's how to use it for this p
      - URL: `{{base_url}}/api/tasks/report?date=2026-03-28`
      - Expected: 200 OK with summary JSON.
 
-4. **Run Tests**: Click "Send" for each request. Check the response status and body. Sample shown below
+4. **Run Tests**: Click "Send" for each request. Check the response status and body. Sample shown below.
 
 <img width="1919" height="1068" alt="image" src="https://github.com/user-attachments/assets/4110aa2f-4060-4e1d-a513-c8be2b6b33e4" />
-
-
-6. **Alternatives**:
-   - **Thunder Client**: VS Code extension for similar functionality.
-   - **cURL**: Command-line tool, such as
-      - `curl -X POST {{base_url}}/api/tasks -H "Content-Type: application/json" -d '{"title":"Test","due_date":"2026-04-01","priority":"medium"}'`
 
 Ensure the Laravel server is running (`php artisan serve`) before testing.
 
@@ -443,12 +437,12 @@ Ensure the Laravel server is running (`php artisan serve`) before testing.
 
 ## Evaluation Criteria Addressed
 
-* ✔ Business rules enforced (validation + logic)
-* ✔ Proper Laravel structure (Controllers, Models, Migrations)
-* ✔ Clean and readable code
-* ✔ RESTful API design
-* ✔ MySQL integration
-* ✔ Ready for deployment
+* Business rules enforced (validation + logic)
+* Proper Laravel structure (Controllers, Models, Migrations)
+* Clean and readable code
+* RESTful API design
+* MySQL integration
+* Ready for deployment
 
 ---
 
