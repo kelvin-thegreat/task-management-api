@@ -12,7 +12,7 @@ It supports task creation, listing, status updates, deletion, and a daily report
 
 - Laravel (PHP Framework)
 - MySQL (Database)
-- C
+- CSS/HTML
 - RESTful API
 
 ---
@@ -220,15 +220,12 @@ http://127.0.0.1:8000/api/tasks?status=pending
     }
 ]
 ```
-
+#### Empty Response with relevant error message:
 
 ```
 http://127.0.0.1:8000/api/tasks?status=low
 ```
-
-#### Empty Response with relevant error message:
 <img width="1907" height="522" alt="image" src="https://github.com/user-attachments/assets/482faf30-ed90-4fbd-84c1-0d53293676a0" />
-
 
 ```json
 {
@@ -237,7 +234,6 @@ http://127.0.0.1:8000/api/tasks?status=low
 ```
 
 ---
-
 ### 3️ Update Task Status
 
 **PATCH** `/api/tasks/{id}/status`
