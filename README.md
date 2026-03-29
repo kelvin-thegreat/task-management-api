@@ -37,7 +37,7 @@ It supports task creation, listing, status updates, deletion, and a daily report
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/your-username/task-api.git
+git clone https://github.com/kelvin-thegreat/task-management-api.git
 cd task-api
 ```
 
