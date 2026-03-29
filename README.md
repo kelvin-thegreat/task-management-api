@@ -378,7 +378,8 @@ Postman is a popular tool for testing REST APIs. Here's how to use it for this p
 3. **Create Requests for Each Endpoint**:
 
    - **Create Task**:
-<img width="952" height="412" alt="image" src="https://github.com/user-attachments/assets/61ba7512-ecb8-        48c9-b6b5-55a919377b1a"/>
+<img width="952" height="412" alt="image" src="https://github.com/user-attachments/assets/61ba7512-ecb8-48c9-b6b5-55a919377b1a"/>
+
      - Method: POST
      - URL: `{{base_url}}/api/tasks`
      - Headers: `Content-Type: application/json`
@@ -394,6 +395,7 @@ Postman is a popular tool for testing REST APIs. Here's how to use it for this p
 
    - **List Tasks**:
 <img width="1172" height="698" alt="image" src="https://github.com/user-attachments/assets/0765714a-63d2-41d9-a80f-c2459cb11f25" />
+
      - Method: GET
      - URL: `{{base_url}}/api/tasks` (or `{{base_url}}/api/tasks?status=pending` for filtering)
      - Headers: None required
