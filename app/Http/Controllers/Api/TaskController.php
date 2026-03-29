@@ -114,8 +114,16 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::find($id);
 
+        // Handling task not found
+        if (!$task) {
+            return response()->json([
+                'message' => 'Task not found'
+            ], 404);
+        }
+
+        // Required condition
         if ($task->status !== 'done') {
             return response()->json([
                 'message' => 'Only completed tasks can be deleted'
@@ -126,7 +134,7 @@ class TaskController extends Controller
 
         return response()->json([
             'message' => 'Task deleted successfully'
-        ]);
+        ], 200);
     }
 
     public function update(Request $request, $id)
