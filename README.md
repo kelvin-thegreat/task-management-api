@@ -107,6 +107,7 @@ php artisan serve
   "priority": "high"
 }
 ```
+<img width="956" height="321" alt="image" src="https://github.com/user-attachments/assets/e432bb62-cfbe-43d1-931d-8109c578ce0a" />
 
 #### Response:
 
@@ -119,30 +120,119 @@ php artisan serve
   "status": "pending"
 }
 ```
+<img width="956" height="410" alt="image" src="https://github.com/user-attachments/assets/d1dbf0ac-ef89-458c-83fc-ad8a0f14753b" />
 
 ---
 
 ### 2️ List Tasks
 
-**GET** `/api/tasks`
+**GET** `http://127.0.0.1:8000/api/tasks`
 
-#### Features:
+<img width="1919" height="931" alt="image" src="https://github.com/user-attachments/assets/1e836bec-7f1f-4442-95aa-81b8d35878fc" />
+
+#### Features As shown Above:
 
 * Sorted by:
-
   * Priority (high → low)
   * Then due_date (ascending)
 * Optional filter:
 
 ```
-/api/tasks?status=pending
+http://127.0.0.1:8000/api/tasks?status=pending
 ```
 
-#### Empty Response:
+#### Non Empty Response:
+<img width="1919" height="708" alt="image" src="https://github.com/user-attachments/assets/4de943c1-0f81-4b6a-9028-80e835bd9d96" />
+
+```json
+[
+    {
+        "id": 25,
+        "title": "Machine Learning Proposal",
+        "due_date": "2026-03-30",
+        "priority": "high",
+        "status": "pending",
+        "created_at": "2026-03-29T01:34:33.000000Z",
+        "updated_at": "2026-03-29T01:34:33.000000Z"
+    },
+    {
+        "id": 16,
+        "title": "Performance Test",
+        "due_date": "2026-04-13",
+        "priority": "high",
+        "status": "pending",
+        "created_at": "2026-03-28T22:50:23.000000Z",
+        "updated_at": "2026-03-28T22:50:23.000000Z"
+    },
+    {
+        "id": 19,
+        "title": "Backup Data",
+        "due_date": "2026-04-16",
+        "priority": "high",
+        "status": "pending",
+        "created_at": "2026-03-28T22:50:23.000000Z",
+        "updated_at": "2026-03-28T22:50:23.000000Z"
+    },
+    {
+        "id": 1,
+        "title": "Design API",
+        "due_date": "2026-03-29",
+        "priority": "medium",
+        "status": "pending",
+        "created_at": "2026-03-28T22:50:23.000000Z",
+        "updated_at": "2026-03-28T22:50:23.000000Z"
+    },
+    {
+        "id": 20,
+        "title": "Final Submission",
+        "due_date": "2026-04-17",
+        "priority": "medium",
+        "status": "pending",
+        "created_at": "2026-03-28T22:50:23.000000Z",
+        "updated_at": "2026-03-28T22:50:23.000000Z"
+    },
+    {
+        "id": 2,
+        "title": "Fix Bug",
+        "due_date": "2026-03-30",
+        "priority": "low",
+        "status": "pending",
+        "created_at": "2026-03-28T22:50:23.000000Z",
+        "updated_at": "2026-03-28T22:50:23.000000Z"
+    },
+    {
+        "id": 6,
+        "title": "Optimize Code",
+        "due_date": "2026-04-03",
+        "priority": "low",
+        "status": "pending",
+        "created_at": "2026-03-28T22:50:23.000000Z",
+        "updated_at": "2026-03-28T22:50:23.000000Z"
+    },
+    {
+        "id": 18,
+        "title": "Monitor Logs",
+        "due_date": "2026-04-15",
+        "priority": "low",
+        "status": "pending",
+        "created_at": "2026-03-28T22:50:23.000000Z",
+        "updated_at": "2026-03-28T22:50:23.000000Z"
+    }
+]
+```
+
+
+```
+http://127.0.0.1:8000/api/tasks?status=low
+```
+
+#### Empty Response with relevant error message:
+<img width="1907" height="522" alt="image" src="https://github.com/user-attachments/assets/482faf30-ed90-4fbd-84c1-0d53293676a0" />
+
 
 ```json
 {
-  "message": "No tasks found"
+    "message": "No tasks found"
 }
 ```
 
@@ -166,9 +256,10 @@ php artisan serve
 
 ```json
 {
-  "status": "in_progress"
+    "status": "in_progress"
 }
 ```
+<img width="1563" height="537" alt="image" src="https://github.com/user-attachments/assets/99538652-d36a-4685-aa13-59bb106a14ab" />
 
 ---
 
@@ -187,30 +278,45 @@ php artisan serve
 }
 ```
 
+<img width="1576" height="395" alt="image" src="https://github.com/user-attachments/assets/5273aa9c-44f5-4776-8df9-c172e932b438" />
+
 ---
 
 ### 5 Daily Report (Bonus)
 
-**GET** `/api/tasks/report?date=YYYY-MM-DD`
+**GET** `http://127.0.0.1:8000/api/tasks/report?date=YYYY-MM-DD`
 
 #### Example:
 
 ```
-/api/tasks/report?date=2026-03-28
+GET http://127.0.0.1:8000/api/tasks/report?date=2026-03-28
 ```
 
 #### Response:
 
 ```json
 {
-  "date": "2026-03-28",
-  "summary": {
-    "high": {"pending": 2, "in_progress": 1, "done": 0},
-    "medium": {"pending": 1, "in_progress": 0, "done": 3},
-    "low": {"pending": 0, "in_progress": 0, "done": 1}
-  }
+    "date": "2026-03-28",
+    "summary": {
+        "high": {
+            "pending": 0,
+            "in_progress": 0,
+            "done": 0
+        },
+        "medium": {
+            "pending": 0,
+            "in_progress": 0,
+            "done": 0
+        },
+        "low": {
+            "pending": 0,
+            "in_progress": 0,
+            "done": 0
+        }
+    }
 }
 ```
+<img width="1914" height="689" alt="image" src="https://github.com/user-attachments/assets/5e0b481c-7f9e-4a67-9d4c-565323dfee0b" />
 
 ---
 
