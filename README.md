@@ -17,7 +17,7 @@ It supports task creation, listing, status updates, deletion, and a daily report
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### Table: `tasks`
 
@@ -217,9 +217,8 @@ php artisan serve
 ## Frontend Integration
 
 <img width="1795" height="938" alt="image" src="https://github.com/user-attachments/assets/59aad19e-c9ec-412f-b65e-35a805b0c76c" />
-*(The UI developed)*
 
-Above is the User Interface for the API designed.
+Above is the designed User Interface for the API.
 
 ### Implemented UI Features:
 - Task list with sorting and filtering
