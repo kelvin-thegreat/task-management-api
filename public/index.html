@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Management System</title>
+
+    <!-- Link external CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Link external CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+</head>
+
+<body>
+<div class="container">
+
+ <!-- PAGE TITLE -->   
+<h2 style="text-align: center;">Task Management System</h2>
+
+<!-- CREATE TASK -->
+<h3>Create Task</h3>
+
+<!-- Task Title -->
+<input type="text" id="title" placeholder="Task Title">
+
+<!-- Due Date -->
+<input type="date" id="due_date" placeholder="Due Date">
+
+<!-- Priority Selection -->
+<select id="priority">
+    <option value="">Select Priority</option>
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+</select>
+
+<!-- Status Selection -->
+<select id="status">
+    <option value="">Select Status</option>
+    <option value="pending">Pending</option>
+    <option value="in_progress">In Progress</option>
+    <option value="done">Done</option>
+</select>
+
+<!-- Status Selection -->
+<button id="submitBtn" onclick="createTask()">Add Task</button>
+
+<br><br>
+
+<!-- FILTER -->
+<select id="filterStatus" onchange="loadTasks()">
+    <option value="">All Tasks</option>
+    <option value="pending">Pending</option>
+    <option value="in_progress">In Progress</option>
+    <option value="done">Done</option>
+</select>
+
+<button onclick="loadTasks()">Refresh</button>
+
+
+<!-- DAILY REPORT SECTION -->
+<h3>Daily Report</h3>
+
+<input type="date" id="reportDate">
+<button onclick="getReport()">Generate Report</button>
+
+<div id="reportResult"></div>
+
+<br>
+<br><br>
+
+<!-- DAILY REPORT SECTION -->
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Due Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <!-- Data will be injected here dynamically -->
+    <tbody id="taskTable"></tbody>
+</table>
+
+<script>
+// API base endpoint
+const API = "http://127.0.0.1:8000/api/tasks";
+
+// Tracks task being edited
+let editingId = null;
+
+
+// Create or update a task
+function createTask() {
+
+    // Read form inputs
+    const title = document.getElementById('title').value;
+    const due_date = document.getElementById('due_date').value;
+    const priority = document.getElementById('priority').value;
+    const status = document.getElementById('status').value;
+
+    // Basic validation
+    if (!title || !due_date || !priority || !status) {
+        alert("Please fill all fields!");
+        return;
+    }
+
+    const data = { title, due_date, priority, status };
+
+    // Update existing task
+    if (editingId) {
+        fetch(API + "/" + editingId, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(() => {
+            alert("Task updated");
+            editingId = null;
+            resetForm();
+            loadTasks();
+        });
+
+    } else {
+        // Create new task
+        fetch(API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(response => {
+            if (response.message) {
+                alert(response.message);
+            } else {
+                alert("Task created");
+                resetForm();
+                loadTasks();
+            }
+        });
+    }
+}
+
+// Reset form fields and button label
+function resetForm() {
+    document.getElementById('title').value = '';
+    document.getElementById('due_date').value = '';
+    document.getElementById('priority').value = '';
+    document.getElementById('status').value = '';
+
+    document.getElementById('submitBtn').innerText = "Add Task";
+}
+
+// Fetch and display tasks
+function loadTasks() {
+
+    // Apply optional filter
+    let status = document.getElementById('filterStatus').value;
+    let url = API + (status ? "?status=" + status : "");
+
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+
+            let table = document.getElementById('taskTable');
+            table.innerHTML = '';
+
+            // Handle empty response
+            if (data.message) {
+                table.innerHTML = `<tr><td colspan="6">${data.message}</td></tr>`;
+                return;
+            }
+
+            // Render rows
+            data.forEach(task => {
+                table.innerHTML += `
+                    <tr>
+                        <td>${task.id}</td>
+                        <td>${task.title}</td>
+                        <td>${task.priority}</td>
+                        <td>${task.status}</td>
+                        <td>${task.due_date}</td>
+                        <td>
+                            <button onclick="editTask(${task.id})">Edit</button>
+                            <button class="start-btn" onclick="updateStatus(${task.id}, 'in_progress')">Start</button>
+                            <button class="done-btn" onclick="updateStatus(${task.id}, 'done')">Done</button>
+                            <button class="delete-btn"
+                                onclick="deleteTask(${task.id})"
+                                ${task.status !== 'done' ? 'disabled' : ''}>
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        });
+}
+
+// Update task status
+function updateStatus(id, status) {
+    fetch(API + "/" + id + "/status", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status })
+    })
+    .then(res => res.json())
+    .then(() => loadTasks());
+}
+
+// Delete task (only if done)
+function deleteTask(id) {
+    fetch(API + "/" + id, {
+        method: "DELETE"
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+        loadTasks();
+    });
+}
+
+// Load task into form for editing
+function editTask(id) {
+    fetch(API)
+        .then(res => res.json())
+        .then(data => {
+
+            let task = data.find(t => t.id === id);
+            if (!task) return;
+
+            document.getElementById('title').value = task.title;
+            document.getElementById('due_date').value = task.due_date;
+            document.getElementById('priority').value = task.priority;
+            document.getElementById('status').value = task.status;
+
+            editingId = id;
+
+            document.getElementById('submitBtn').innerText = "Update Task";
+        });
+}
+
+// Generate daily summary report
+function getReport() {
+
+    const date = document.getElementById('reportDate').value;
+
+    if (!date) {
+        alert("Select a date");
+        return;
+    }
+
+    fetch(API + "/report?date=" + date)
+        .then(res => res.json())
+        .then(data => {
+
+            let html = `
+                <h4 style="text-align:center;">Report for ${data.date}</h4>
+                <table class="report-table">
+                    <tr>
+                        <th>Priority</th>
+                        <th>Pending</th>
+                        <th>In Progress</th>
+                        <th>Done</th>
+                    </tr>
+            `;
+
+            for (let priority in data.summary) {
+                html += `
+                    <tr>
+                        <td>${priority}</td>
+                        <td>${data.summary[priority].pending}</td>
+                        <td>${data.summary[priority].in_progress}</td>
+                        <td>${data.summary[priority].done}</td>
+                    </tr>
+                `;
+            }
+
+            html += `</table>`;
+
+            document.getElementById('reportResult').innerHTML = html;
+        });
+}
+
+// Initial load
+loadTasks();
+</script>
+
+</div>
+</body>
+</html>

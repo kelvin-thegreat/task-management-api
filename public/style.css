@@ -1,0 +1,136 @@
+/* ===== RESET / BASE ===== */
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+}
+
+/* ===== HEADINGS ===== */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* ===== SECTION CARDS ===== */
+.section {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 8px;
+}
+
+/* ===== FORM LAYOUT ===== */
+.form-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+input, select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-width: 200px;
+}
+
+/* ===== BUTTONS ===== */
+button {
+    padding: 7px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Colors */
+.start-btn { background: #0d6efd; color: white; }
+.done-btn { background: #28a745; color: white; }
+.delete-btn { background: #dc3545; color: white; }
+.edit-btn { background: #6c757d; color: white; }
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Hover */
+.start-btn:hover { background: #0b5ed7; }
+.done-btn:hover { background: #218838; }
+.delete-btn:hover { background: #c82333; }
+.edit-btn:hover { background: #5a6268; }
+
+/* ===== TABLE ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background: #0d6efd;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+tr:hover {
+    background: #f1f1f1;
+}
+
+/* ===== BADGES (PRO LOOK 🔥) ===== */
+.badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+}
+
+/* Priority */
+.high { background: #dc3545; }
+.medium { background: #ffc107; color: black; }
+.low { background: #28a745; }
+
+/* Status */
+.pending { background: #6c757d; }
+.in_progress { background: #0d6efd; }
+.done { background: #28a745; }
+
+/* ===== REPORT ===== */
+.report-section {
+    text-align: center;
+}
+
+.report-table {
+    width: 350px;
+    margin: 10px auto;
+    border-collapse: collapse;
+}
+
+.report-table th,
+.report-table td {
+    padding: 6px;
+    border: 1px solid #ccc;
+}
