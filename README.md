@@ -378,26 +378,29 @@ Postman is a popular tool for testing REST APIs. Here's how to use it for this p
 3. **Create Requests for Each Endpoint**:
 
    - **Create Task**:
+<img width="952" height="412" alt="image" src="https://github.com/user-attachments/assets/61ba7512-ecb8-        48c9-b6b5-55a919377b1a"/>
      - Method: POST
      - URL: `{{base_url}}/api/tasks`
      - Headers: `Content-Type: application/json`
      - Body (raw JSON):
        ```json
-       {
-         "title": "Finish assignment",
-         "due_date": "2026-04-01",
-         "priority": "high"
-       }
+            {
+              "title": "Software Testing  2026",
+              "due_date": "2026-04-01",
+              "priority": "high"
+            }
        ```
-     - Expected: 201 Created with task data.
+     - Expected: 200 Created with task data.
 
    - **List Tasks**:
+<img width="1172" height="698" alt="image" src="https://github.com/user-attachments/assets/0765714a-63d2-41d9-a80f-c2459cb11f25" />
      - Method: GET
      - URL: `{{base_url}}/api/tasks` (or `{{base_url}}/api/tasks?status=pending` for filtering)
      - Headers: None required
      - Expected: 200 OK with array of tasks or message if empty.
 
    - **Update Task Status**:
+<img width="1563" height="537" alt="image" src="https://github.com/user-attachments/assets/99538652-d36a-4685-aa13-59bb106a14ab" />
      - Method: PATCH
      - URL: `{{base_url}}/api/tasks/{id}/status` (replace {id} with actual task ID)
      - Headers: `Content-Type: application/json`
@@ -410,6 +413,8 @@ Postman is a popular tool for testing REST APIs. Here's how to use it for this p
      - Expected: 200 OK or 422 if invalid transition.
 
    - **Delete Task**:
+<img width="1180" height="407" alt="image" src="https://github.com/user-attachments/assets/f5324b6d-6527-4bec-9a46-b7b699643902" />
+
      - Method: DELETE
      - URL: `{{base_url}}/api/tasks/{id}`
      - Expected: 204 No Content if successful, 403 if not done.
@@ -450,11 +455,8 @@ Ensure the Laravel server is running (`php artisan serve`) before testing.
 * Hosted API (if deployed)
 * GitHub repository
 * README with setup + usage
-
-**Deadline:** Wednesday, 1st April 2026, 2:00 PM
-
 ---
 
 ## License
 
-MIT License
+- MIT License
