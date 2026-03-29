@@ -33,7 +33,7 @@ It supports task creation, listing, status updates, deletion, and a daily report
 
 ---
 
-## 🚀 Setup Instructions (Local)
+## Setup Instructions (Local)
 
 ### 1. Clone Repository
 ```bash
@@ -67,7 +67,7 @@ DB_PASSWORD=
 ### 4. Generate App Key
 
 ```bash
-php artisan key:generate
+php artisan key: generate
 ```
 
 ### 5. Run Migrations
@@ -160,7 +160,7 @@ php artisan serve
 * Cannot:
 
   * Skip states
-  * Revert backward
+  * Revert backwards
 
 #### Example Request:
 
@@ -214,25 +214,25 @@ php artisan serve
 
 ---
 
-## 🎨 Frontend Integration (Placeholder)
+## Frontend Integration
 
-This API is designed to be consumed by a frontend application (e.g., React, Vue.js, or mobile app).
+<img width="1795" height="938" alt="image" src="https://github.com/user-attachments/assets/59aad19e-c9ec-412f-b65e-35a805b0c76c" />
+*(The UI developed)*
 
-### Suggested UI Features:
+Above is the User Interface for the API designed.
+
+### Implemented UI Features:
 - Task list with sorting and filtering
-- Create/edit task forms with validation
+- Create/edit/update task forms with validation
 - Status update buttons with progress flow
 - Daily report dashboard
 - Responsive design for mobile/desktop
 
-### Integration Notes:
+### Integrations:
 - Use the API endpoints documented above
-- Handle authentication if added later
+- Handle authentication
 - Implement client-side validation matching server rules
-- Use libraries like Axios or Fetch for HTTP requests
-
-*(This section is a placeholder for future UI development)*
-
+- Use Fetch for HTTP requests
 ---
 
 ## Deployment Instructions
