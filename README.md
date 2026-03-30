@@ -77,8 +77,7 @@ Open phpMyAdmin:
 
 ```bash
 http://localhost/phpmyadmin
-Create a database named:
-task_api
+Create a database named: `task_api`
 ```
 
 ### 4. Generate App Key
