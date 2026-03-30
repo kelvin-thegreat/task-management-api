@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->date('due_date');
-            $table->enum('priority', ['low', 'medium', 'high']);
-            $table->enum('status', ['pending', 'in_progress', 'done'])->default('pending');
+            $table->date('due_date');            
+            $table->string('priority');
+            $table->string('status')->default('pending');
+
             $table->timestamps();
 
             $table->unique(['title', 'due_date']);
         });
     }
-
 
     /**
      * Reverse the migrations.
