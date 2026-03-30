@@ -12,10 +12,8 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-# WHERE THE APP RUNS
+# IMPORTANT: expose correct port
 EXPOSE 8080
 
-# FORCE PORT FALLBACK
-ENV PORT=8080
-
-CMD php artisan config:clear && php artisan cache:clear && php artisan serve --host=0.0.0.0 --port=8080
+# Laravel public entry
+CMD php -S 0.0.0.0:8080 -t public public/index.php
