@@ -81,5 +81,8 @@
         }
     },
     "minimum-stability": "stable",
+    "audit": {
+        "block-insecure": false
+    },
     "prefer-stable": true
 }
