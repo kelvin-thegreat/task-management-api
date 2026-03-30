@@ -153,7 +153,6 @@ function resetForm() {
     document.getElementById('due_date').value = '';
     document.getElementById('priority').value = '';
     document.getElementById('status').value = '';
-
     document.getElementById('submitBtn').innerText = "Add Task";
 }
 
@@ -166,17 +165,18 @@ function loadTasks() {
 
     fetch(url)
         .then(res => res.json())
-        .then(data => {
+        .then(response => {
+
+            let data = response.data || response;
 
             let table = document.getElementById('taskTable');
             table.innerHTML = '';
 
-            // Handle empty response
-            if (data.message) {
-                table.innerHTML = `<tr><td colspan="6">${data.message}</td></tr>`;
+            if (!data || data.length === 0) {
+                table.innerHTML = `<tr><td colspan="6">No tasks found</td></tr>`;
                 return;
             }
-
+    
             // Render rows
             data.forEach(task => {
                 table.innerHTML += `
