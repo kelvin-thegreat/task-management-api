@@ -486,7 +486,7 @@ Ensure the Laravel server is running (`php artisan serve`) before testing.
 
 ## Submissions
 
-* [Hosted API](https://task-management-api-main-iomq1s.free.laravel.cloud/)))
+* [Hosted API](https://task-management-api-main-iomq1s.free.laravel.cloud/)
 * [GitHub repository](https://github.com/kelvin-thegreat/task-management-api.git)
 * [Here is the README with setup and usage](README.md)
 ---
@@ -497,7 +497,7 @@ Ensure the Laravel server is running (`php artisan serve`) before testing.
 
 - [SE. Kelvin](klvntech2022@gmail.com)
 - [Email](Oumaklvn2018@gmail.com)
-- [githun](https://github.com/kelvin-thegreat)
+- [github](https://github.com/kelvin-thegreat)
 
 ---
 
