@@ -12,8 +12,6 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-# IMPORTANT: expose correct port
 EXPOSE 8080
 
-# Laravel public entry
-CMD php -S 0.0.0.0:8080 -t public public/index.php
+CMD php -S 0.0.0.0:8080 -t public
