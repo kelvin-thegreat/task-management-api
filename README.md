@@ -1,4 +1,4 @@
-# Task Management API (Laravel + MySQL)
+# Task Management API using Laravel Framework and MySQL
 
 ## Overview
 
