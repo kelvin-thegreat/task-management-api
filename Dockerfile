@@ -12,4 +12,10 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-CMD php artisan config:clear && php artisan cache:clear && php artisan serve --host=0.0.0.0 --port=$PORT
+# WHERE THE APP RUNS
+EXPOSE 8080
+
+# FORCE PORT FALLBACK
+ENV PORT=8080
+
+CMD php artisan config:clear && php artisan cache:clear && php artisan serve --host=0.0.0.0 --port=8080
