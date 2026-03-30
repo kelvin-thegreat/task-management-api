@@ -33,12 +33,20 @@ It supports task creation, listing, status updates, deletion, and a daily report
 
 ---
 
-## Setup Instructions (Local)
+## How to Run Locally (Using XAMPP)
+
+### Prerequisites
+
+Ensure the following are installed and running:
+
+- XAMPP (Apache & MySQL must be started)
+- PHP >= 8.x
+- Composer
 
 ### 1. Clone Repository
 ```bash
 git clone https://github.com/kelvin-thegreat/task-management-api.git
-cd task-api
+cd task-management-api
 ```
 
 ### 2. Install Dependencies
@@ -63,17 +71,26 @@ DB_DATABASE=task_api
 DB_USERNAME=root
 DB_PASSWORD=
 ```
+### 3.1 Create Database
+
+Open phpMyAdmin:
+
+```bash
+http://localhost/phpmyadmin
+Create a database named:
+task_api
+```
 
 ### 4. Generate App Key
 
 ```bash
-php artisan key: generate
+php artisan key:generate
 ```
 
 ### 5. Run Migrations
 
 ```bash
-php artisan migrate
+php artisan migrate --seed
 ```
 
 ### 6. Start Server
@@ -81,11 +98,18 @@ php artisan migrate
 ```bash
 php artisan serve
 ```
+## Access Application
 
+#### Using Base URL: 
+```bash
+http://127.0.0.1:8000
+```
+#### using HTML UI:
+```bash
+http://127.0.0.1:8000/index.html
+```
 ---
-
 ## API Endpoints
-
 ---
 
 ### 1️ Create Task
@@ -342,14 +366,17 @@ You can deploy using platforms like:
 
 ### Option 1: Railway
 
-1. Create a new project on Railway
-2. Add MySQL database
-3. Set environment variables from `.env`
-4. Run:
+1. Create an account on Railway
+2. Create a new project → Deploy from GitHub
+3. Add a MySQL database plugin
+4. Copy database credentials into `.env`
+5. Run migrations:
 
+```bash 
+php artisan migrate --seed 
 ```
-php artisan migrate --force
-```
+
+6. Access the generated public URL
 
 ---
 
