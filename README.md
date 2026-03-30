@@ -402,8 +402,10 @@ php artisan  migrate:fresh --seed --force
 
 7. Open the provided URL: 
 
-[Public URL](https://task-management-api-main-iomq1s.free.laravel.cloud/)
-
+Deployed API 
+<a href="https://task-management-api-main-iomq1s.free.laravel.cloud/" target="_blank" rel="noopener noreferrer">
+  Public URL
+</a>
 ---
 
 **Important:**
