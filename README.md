@@ -55,7 +55,7 @@ cd task-management-api
 composer install
 ```
 
-### 3. Setup Environment
+### 3. Set up .env for MySQL connection
 
 ```bash
 cp .env.example .env
@@ -86,17 +86,28 @@ Create a database named: `task_api`
 php artisan key:generate
 ```
 
-### 5. Run Migrations
+### 4.1 Set Up Database
+
+#### Option 1. Run Migrations & Seeders
 
 ```bash
 php artisan migrate --seed
 ```
 
-### 6. Start Server
+#### Option 2. Use SQL dump file
+
+Import the provided SQL dump file `task_management_Sql_dump into your MySQL database. This will populate the database with sample data.
+
+```bash
+mysql -u root -p task_api < task_api.sql
+```
+
+### 5. Running locally via Starting the Server
 
 ```bash
 php artisan serve
 ```
+
 ## Access Application
 
 #### Using Base URL: 
@@ -108,7 +119,7 @@ http://127.0.0.1:8000
 http://127.0.0.1:8000/index.html
 ```
 ---
-## API Endpoints
+## Example API Requests
 ---
 
 ### 1️ Create Task
@@ -361,31 +372,42 @@ Above is the designed User Interface for the API.
 
 ## Deployment Instructions
 
-You can deploy using platforms like:
+### using Laravel Cloud
 
-### Option 1: Railway
+1. Create account on Laravel Cloud
+2. Create → **New Application → Deploy from GitHub**
+2. Select your repository
+3. Add the database
+ - Go to Resources → Add Database → MySQL
+ - Copy the database credentials
+4. Set environment variables:
 
-1. Create an account on Railway
-2. Create a new project → Deploy from GitHub
-3. Add a MySQL database plugin
-4. Copy database credentials into `.env`
-5. Run migrations:
+```env
+DB_CONNECTION=pgsql
+DB_HOST=xxx
+DB_PORT=xxx
+DB_USERNAME=xxxx
+DB_PASSWORD=xxx
+```
+5. Click **Deploy**, wait for build to complete
 
-```bash 
-php artisan migrate --seed 
+6. Run Migrations:
+
+ Click commands in laravel Cloud
+ ![alt text](image-1.png)
+
+```bash
+php artisan  migrate:fresh --seed --force
 ```
 
-6. Access the generated public URL
+7. Open the provided URL: 
+
+[Public URL](https://task-management-api-main-iomq1s.free.laravel.cloud/)
 
 ---
 
-### Option 2: Render
-
-1. Create a Web Service
-2. Connect GitHub repo
-3. Add MySQL database
-4. Set environment variables
-5. Deploy and run migrations
+**Important:**
+Use your live domain in API calls, not `localhost`.
 
 ---
 
@@ -461,18 +483,13 @@ Ensure the Laravel server is running (`php artisan serve`) before testing.
 
 ---
 
-## Evaluation Criteria Addressed
+## Hosted API
 
-* Business rules enforced (validation + logic)
-* Proper Laravel structure (Controllers, Models, Migrations)
-* Clean and readable code
-* RESTful API design
-* MySQL integration
-* Ready for deployment
+[Live url:](https://task-management-api-main-iomq1s.free.laravel.cloud/)
 
----
+The hosted API
+![alt text](image.png)
 
-## Submission
 
 * Hosted API (if deployed)
 * GitHub repository
