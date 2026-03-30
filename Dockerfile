@@ -10,7 +10,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader
+RUN composer update --no-dev --optimize-autoloader --ignore-platform-reqs
 
-# 🔥 DEBUG START
+# DEBUG START
 CMD echo "PORT=$PORT" && php artisan serve --host=0.0.0.0 --port=$PORT
