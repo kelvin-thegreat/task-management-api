@@ -374,12 +374,11 @@ Above is the designed User Interface for the API.
 
 ### using Laravel Cloud
 
-1. Create account on Laravel Cloud
+1. Create an account on Laravel Cloud
 2. Create → **New Application → Deploy from GitHub**
 2. Select your repository
 3. Add the database
- - Go to Resources → Add Database → MySQL
- - Copy the database credentials
+ - Go to Resources → Add Database → pgsql
 4. Set environment variables:
 
 ```env
@@ -485,17 +484,21 @@ Ensure the Laravel server is running (`php artisan serve`) before testing.
 
 ---
 
-## Hosted API
+## Submissions
 
-[Live url:](https://task-management-api-main-iomq1s.free.laravel.cloud/)
+* [Hosted API](https://task-management-api-main-iomq1s.free.laravel.cloud/)))
+* [GitHub repository](https://github.com/kelvin-thegreat/task-management-api.git)
+* [Here is the README with setup and usage](README.md)
+---
 
-The hosted API
-![alt text](image.png)
+---
 
+## Author
 
-* Hosted API (if deployed)
-* GitHub repository
-* README with setup + usage
+- [SE. Kelvin](klvntech2022@gmail.com)
+- [Email](Oumaklvn2018@gmail.com)
+- [githun](https://github.com/kelvin-thegreat)
+
 ---
 
 ## License
